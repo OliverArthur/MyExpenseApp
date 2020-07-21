@@ -6,6 +6,7 @@ import '../models/transaction.dart';
 // widgets
 import '../widgets/transaction_list.dart';
 import '../widgets/add_transaction.dart';
+import '../widgets/chart.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -15,6 +16,16 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   // propeties
   final List<Transaction> _userTransactions = [];
+
+  List<Transaction> get _recentTransaction {
+    return _userTransactions.where((element) {
+      return element.created.isAfter(
+        DateTime.now().subtract(
+          Duration(days: 7),
+        ),
+      );
+    }).toList();
+  }
 
   /// private method to add new transaction by passing the parameters
   /// [title], [amount].
@@ -69,12 +80,19 @@ class _HomeScreenState extends State<HomeScreen> {
           children: <Widget>[
             Container(
               width: double.infinity,
-              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-              child: Card(
-                child: Container(
-                  child: Text('Chart placehoder'),
-                ),
+              padding: EdgeInsets.symmetric(
+                vertical: 5,
+                horizontal: 15,
               ),
+              child: _userTransactions.isEmpty
+                  ? null
+                  : Card(
+                      child: Container(
+                        child: Chart(
+                          recentTransactions: _recentTransaction,
+                        ),
+                      ),
+                    ),
             ),
             TransactionList(_userTransactions),
           ],

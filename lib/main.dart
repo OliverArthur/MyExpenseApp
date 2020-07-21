@@ -12,9 +12,9 @@ class App extends StatelessWidget {
       title: 'Personal Expenses',
       theme: ThemeData(
         primarySwatch: Colors.amber,
-        accentColor: Colors.amber,
+        accentColor: Colors.amberAccent,
         appBarTheme: AppBarTheme(
-          color: Colors.transparent,
+          color: Colors.grey[50],
           elevation: 0,
         ),
       ),
