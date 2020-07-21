@@ -4,6 +4,9 @@ import 'package:intl/intl.dart';
 // models
 import '../models/transaction.dart';
 
+// widgets
+import './chart_bar.dart';
+
 class Chart extends StatelessWidget {
   // properties
   final List<Transaction> recentTransactions;
@@ -26,27 +29,39 @@ class Chart extends StatelessWidget {
           totalAmount += recentTransactions[i].amount;
         }
       }
-      print(DateFormat.E().format(weekDay));
-      print(totalAmount);
       return {
-        'day': DateFormat.E().format(weekDay),
+        'day': DateFormat.E().format(weekDay).substring(0, 1),
         'amount': totalAmount,
       };
     });
   }
 
+  double get totalSpending {
+    return groupTransition.fold(0.0, (sum, item) {
+      return sum + item['amount'];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    print(groupTransition);
-    return Container(
-      child: Card(
-        elevation: 5,
+    return Card(
+      elevation: 5,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Row(
-          children: <Widget>[
-            Column(
-              children: <Widget>[],
-            )
-          ],
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: groupTransition.map((data) {
+            return Flexible(
+              fit: FlexFit.tight,
+              child: ChartBar(
+                label: data['day'],
+                spedingAmount: data['amount'],
+                spedingPercentAmount: totalSpending == 0.0
+                    ? 0.0
+                    : (data['amount'] as double) / totalSpending,
+              ),
+            );
+          }).toList(),
         ),
       ),
     );
