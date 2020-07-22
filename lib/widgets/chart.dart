@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../constants.dart';
+
 // models
 import '../models/transaction.dart';
 
@@ -45,9 +47,9 @@ class Chart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 5,
+      elevation: elevationZero,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(paddingL),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: groupTransition.map((data) {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../constants.dart';
+
 class AddTransaction extends StatefulWidget {
   // properties
   final Function createTx;
@@ -55,13 +57,13 @@ class _AddTransactionState extends State<AddTransaction> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Card(
-        elevation: 4,
+        elevation: 0,
         child: Container(
           padding: EdgeInsets.only(
-            top: 10,
-            left: 10,
-            bottom: MediaQuery.of(context).viewInsets.bottom + 10,
-            right: 10,
+            top: spaceM,
+            left: spaceM,
+            bottom: MediaQuery.of(context).viewInsets.bottom + spaceM,
+            right: spaceM,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -82,7 +84,7 @@ class _AddTransactionState extends State<AddTransaction> {
                 onSubmitted: (_) => _submitTransaction(),
               ),
               Container(
-                height: 70,
+                height: 60,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
