@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+// connstans
+import './constants.dart';
+
+// theme
+import './theme.dart';
+
 // Screen
-import 'src/screen/HomePage.dart';
+import 'screen/Home.dart';
 
 void main() => runApp(App());
 
@@ -12,17 +18,17 @@ class App extends StatelessWidget {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: ligthBackgroundColor,
+      statusBarColor: ligthBackgroundColor,
+      statusBarIconBrightness: Brightness.dark, // status bar icons' color
+      systemNavigationBarIconBrightness: Brightness.dark,
+    ));
     return MaterialApp(
       title: 'Personal Expenses',
-      theme: ThemeData(
-        primarySwatch: Colors.amber,
-        accentColor: Colors.amberAccent,
-        appBarTheme: AppBarTheme(
-          color: Colors.grey[100],
-          elevation: 0,
-        ),
-      ),
-      home: HomeScreen(),
+      theme: mainTheme,
+      home: Home(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
