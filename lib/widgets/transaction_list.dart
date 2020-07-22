@@ -44,6 +44,7 @@ class TransactionList extends StatelessWidget {
               return TransactionItem(
                 transaction: transactions[index],
                 deleteItem: deleteItem,
+                mediaQuery: MediaQuery.of(context),
               );
             },
             itemCount: transactions.length,

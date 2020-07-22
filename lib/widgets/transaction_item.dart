@@ -12,14 +12,17 @@ class TransactionItem extends StatelessWidget {
     Key key,
     @required this.transaction,
     @required this.deleteItem,
+    @required this.mediaQuery,
   }) : super(key: key);
 
   final Transaction transaction;
   final Function deleteItem;
+  final MediaQueryData mediaQuery;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: mediaQuery.size.width,
       padding: EdgeInsets.symmetric(
         vertical: paddingS,
         horizontal: paddingM,
