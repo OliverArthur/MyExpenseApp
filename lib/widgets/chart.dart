@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../constants.dart';
-
 // models
 import '../models/transaction.dart';
 
 // widgets
-import './chart_bar.dart';
+import './total_speding.dart';
 
 class Chart extends StatelessWidget {
   // properties
@@ -46,26 +44,8 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: elevationZero,
-      child: Padding(
-        padding: EdgeInsets.all(paddingL),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: groupTransition.map((data) {
-            return Flexible(
-              fit: FlexFit.tight,
-              child: ChartBar(
-                label: data['day'],
-                spedingAmount: data['amount'],
-                spedingPercentAmount: totalSpending == 0.0
-                    ? 0.0
-                    : (data['amount'] as double) / totalSpending,
-              ),
-            );
-          }).toList(),
-        ),
-      ),
+    return TotalSpeding(
+      total: totalSpending,
     );
   }
 }
