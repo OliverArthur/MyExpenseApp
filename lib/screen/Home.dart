@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_expenses/widgets/chart.dart';
 
 // constants
 import '../constants.dart';
@@ -9,7 +10,6 @@ import '../models/transaction.dart';
 // widgets
 import '../widgets/transaction_list.dart';
 import '../widgets/add_transaction.dart';
-import '../widgets/chart.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -66,16 +66,14 @@ class _HomeState extends State<Home> {
   }
 
   Widget _buildChart(MediaQueryData mediaQuery, AppBar appBar) {
-    return Card(
-      elevation: elevationZero,
-      child: Container(
-        height: (mediaQuery.size.height -
-                appBar.preferredSize.height -
-                mediaQuery.padding.top) *
-            0.3,
-        child: Chart(
-          recentTransactions: _recentTransaction,
-        ),
+    return Container(
+      height: (mediaQuery.size.height -
+              appBar.preferredSize.height -
+              mediaQuery.padding.top) *
+          0.24,
+      width: mediaQuery.size.width,
+      child: Chart(
+        recentTransactions: _recentTransaction,
       ),
     );
   }
@@ -120,10 +118,6 @@ class _HomeState extends State<Home> {
             children: <Widget>[
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.symmetric(
-                  vertical: paddingS,
-                  horizontal: paddingL,
-                ),
                 child: _userTransactions.isEmpty
                     ? null
                     : _buildChart(mediaQuery, appBar),

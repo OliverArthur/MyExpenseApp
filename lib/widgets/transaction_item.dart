@@ -43,6 +43,8 @@ class TransactionItem extends StatelessWidget {
                   paddingM,
                 ),
                 child: FittedBox(
+                  fit: BoxFit.contain,
+                  alignment: Alignment(1.0, 0.0),
                   child: Text(
                     '€${transaction.amount}',
                     style: TextStyle(
@@ -71,7 +73,7 @@ class TransactionItem extends StatelessWidget {
             ),
             trailing: IconButton(
               icon: Icon(Icons.delete),
-              color: Theme.of(context).errorColor,
+              color: textPrimaryColor,
               onPressed: () => deleteItem(transaction.id),
             ),
           ),
