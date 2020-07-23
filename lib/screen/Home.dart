@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
   final List<Transaction> _userTransactions = [];
   List<Transaction> get _recentTransaction {
     return _userTransactions.where((element) {
-      return element.created.isAfter(
+      return element.date.isAfter(
         DateTime.now().subtract(
           Duration(days: 7),
         ),
@@ -36,7 +36,7 @@ class _HomeState extends State<Home> {
       id: DateTime.now().toString(),
       title: title,
       amount: amount,
-      created: chosenDate,
+      date: chosenDate,
     );
 
     setState(() {

@@ -64,7 +64,7 @@ class TransactionItem extends StatelessWidget {
               ),
             ),
             subtitle: Text(
-              DateFormat.yMMMMEEEEd().format(transaction.created),
+              DateFormat.yMMMMEEEEd().format(transaction.date),
               style: TextStyle(
                 fontSize: fontSizeS,
                 fontWeight: FontWeight.bold,

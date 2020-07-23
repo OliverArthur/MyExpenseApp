@@ -1,17 +1,46 @@
-import 'package:flutter/foundation.dart';
+import 'package:equatable/equatable.dart';
 
-class Transaction {
+class Transaction extends Equatable {
   // properties
   final String id;
   final String title;
+  final DateTime createdAt;
   final double amount;
-  final DateTime created;
+  final String note;
+  final String file;
+  final DateTime date;
 
   // constructor
   Transaction({
-    @required this.id,
-    @required this.title,
-    @required this.amount,
-    @required this.created,
+    this.id,
+    this.title,
+    this.createdAt,
+    this.amount,
+    this.note,
+    this.file,
+    this.date,
   });
+
+  @override
+  List<Object> get props => [
+        id,
+        title,
+        createdAt,
+        amount,
+        note,
+        file,
+        date,
+      ];
+
+  static Transaction fromJson(dynamic json) {
+    return Transaction(
+      id: json['id'],
+      title: json['title'],
+      createdAt: json['createdAt'],
+      amount: json['amount'] as double,
+      note: json['note'],
+      file: json['file'],
+      date: json['date'],
+    );
+  }
 }

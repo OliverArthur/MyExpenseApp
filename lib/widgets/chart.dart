@@ -23,9 +23,9 @@ class Chart extends StatelessWidget {
       );
       var totalAmount = 0.0;
       for (var i = 0; i < recentTransactions.length; i++) {
-        if (recentTransactions[i].created.day == weekDay.day &&
-            recentTransactions[i].created.month == weekDay.month &&
-            recentTransactions[i].created.year == weekDay.year) {
+        if (recentTransactions[i].date.day == weekDay.day &&
+            recentTransactions[i].date.month == weekDay.month &&
+            recentTransactions[i].date.year == weekDay.year) {
           totalAmount += recentTransactions[i].amount;
         }
       }
